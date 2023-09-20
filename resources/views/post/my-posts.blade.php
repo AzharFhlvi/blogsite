@@ -28,6 +28,20 @@
                                 <h2 class="post-title">{{ $post->title }}</h2>
                                 <h3 class="post-subtitle">{{ $post->subtitle }}</h3>
                             </a>
+                            <span class="btn btn-sm {{ $post->published ? 'btn-primary' : 'btn-secondary' }}">
+                                {{ $post->published ? 'Published' : 'Not Published' }}
+                            </span> 
+                            <div class="post-actions">
+                                <!-- Edit Button -->
+                                <a href="{{ route('posts.edit', ['post'=>$post->slug]) }}" class="btn btn-sm btn-success">Edit</a>
+                                
+                                <!-- Delete Button -->
+                                <form action="{{ route('posts.destroy', ['post'=>$post->id]) }}" method="POST" class="d-inline" id="deleteForm">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin mau hapus post ini?')">Delete</button>
+                                </form>
+                            </div>                           
                             <p class="post-meta">
                                 Posted by {{ $post->user->name }}
                                 on {{ \Carbon\Carbon::parse($post->published_at)->format('F d, Y') }}

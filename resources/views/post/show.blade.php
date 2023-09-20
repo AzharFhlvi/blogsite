@@ -4,44 +4,37 @@
         <!-- Navigation-->
         @include('layouts.navbar')
         <!-- Page Header-->
-        <header class="masthead" style="background-image: url('{{ asset('storage/images/home-bg.jpg')}}')">
+        <header class="masthead" style="background-image: url('{{ $media->getUrl() }}')">
             <div class="container position-relative px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
-                        <div class="site-heading">
-                            <h1>Clean Blog</h1>
-                            <span class="subheading">A Blog Theme by Start Bootstrap</span>
+                        <div class="post-heading">
+                            <h1>{{ $post->title }}</h1>
+                            <h2 class="subheading">{{ $post->subtitle }}</h2>
+                            <span class="meta">
+                                Posted by {{ $post->user->name }}
+                                on {{ \Carbon\Carbon::parse($post->published_at)->format('F d, Y') }}
+                            </span>
                         </div>
                     </div>
                 </div>
             </div>
         </header>
-        <!-- Main Content-->
-        <div class="container px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="col-md-10 col-lg-8 col-xl-7">
-                    @foreach ($posts as $post)
-                    
-                        <!-- Post preview-->
-                        <div class="post-preview">
-                            <a href="{{ route('posts.show', ['post'=>$post->slug]) }}">
-                                <h2 class="post-title">{{ $post->title }}</h2>
-                                <h3 class="post-subtitle">{{ $post->subtitle }}</h3>
-                            </a>
-                            <p class="post-meta">
-                                Posted by {{ $post->user->name }}
-                                on {{ \Carbon\Carbon::parse($post->published_at)->format('F d, Y') }}
+        <!-- Post Content-->
+        <article class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                            
+                            {!! $post->body !!}
+    
+                            <p>
+                                <a href="{{ route('home') }}">Back to posts</a>
                             </p>
-                        </div>
-                        
-                        <!-- Divider-->
-                        <hr class="my-4" />
-                    @endforeach
-                    <!-- Pager-->
-                    <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </article>
         <!-- Footer-->
         <footer class="border-top">
             <div class="container px-4 px-lg-5">
