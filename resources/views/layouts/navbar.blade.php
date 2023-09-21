@@ -29,10 +29,10 @@
                     </li>
                     @role('user')
                     <li class="nav-item">
-                        <a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ route('posts.index') }}">Post</a>
+                        <a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ route('posts.dashboard') }}">Post</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ route('posts.my-posts') }}">My Post</a>
+                        <a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ route('posts.index') }}">My Post</a>
                     </li>
                     @endrole
                     @role('admin')

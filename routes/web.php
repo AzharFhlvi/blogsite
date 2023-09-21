@@ -26,8 +26,9 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\PostController::class, 'home'])->name('home');
 
 Route::middleware(['role:user'])->group(function () {
-    Route::get('/posts/my-posts', [App\Http\Controllers\PostController::class, 'myPosts'])->name('posts.my-posts');
-    Route::resource('posts', App\Http\Controllers\PostController::class);
+    Route::get('/posts/my-posts', [App\Http\Controllers\PostController::class, 'index'])->name('posts.index');
+    Route::resource('posts', App\Http\Controllers\PostController::class)->except(['index']);
+    Route::get('/posts', [App\Http\Controllers\PostController::class, 'dashboard'])->name('posts.dashboard');
     Route::put('/posts/{post}/publish', [App\Http\Controllers\PostController::class, 'publish'])->name('posts.publish');
 });
 

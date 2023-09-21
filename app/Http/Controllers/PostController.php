@@ -12,9 +12,9 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function dashboard()
     {
-        return view('post');
+        return view('dashboard');
     }
 
     /**
@@ -26,11 +26,11 @@ class PostController extends Controller
         return view('blog', compact('posts'));
     }
 
-    public function myPosts()
+    public function index()
     {
         $posts = Post::where('user_id', auth()->user()->id)->orderBy('published_at', 'desc')->paginate(5);
         
-        return view('post.my-posts', compact('posts'));
+        return view('post.index', compact('posts'));
     }
 
     /**
@@ -117,7 +117,7 @@ class PostController extends Controller
 
         flash()->addSuccess('Post updated successfully!');
 
-        return redirect()->route('posts.my-posts');
+        return redirect()->route('posts.index');
     }
 
     /**
@@ -131,7 +131,7 @@ class PostController extends Controller
 
         flash()->addSuccess('Post deleted successfully!');
 
-        return redirect()->route('posts.my-posts');
+        return redirect()->route('posts.index');
     }
 
     public function publish(Post $post)
@@ -148,6 +148,6 @@ class PostController extends Controller
 
         flash()->addSuccess('Post published successfully!');
 
-        return redirect()->route('posts.my-posts');
+        return redirect()->route('posts.index');
     }
 }
