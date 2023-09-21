@@ -9,6 +9,11 @@ use Carbon\Carbon;
 
 class PostController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:edit posts')->only(['edit', 'update']);
+        $this->middleware('permission:delete posts')->only(['destroy']);
+    }
     /**
      * Display a listing of the resource.
      */
@@ -46,7 +51,7 @@ class PostController extends Controller
         $validated['image'] = $request->file('image')->store('images');
         $validated['body'] = $request->body;
         $validated['slug'] = \Str::slug($validated['title']);
-        $validated['user_id'] = auth()->user()->idh;
+        $validated['user_id'] = auth()->user()->id;
         if($request->publish){
             $validated['published'] = 1;
             $validated['published_at'] = Carbon::now();

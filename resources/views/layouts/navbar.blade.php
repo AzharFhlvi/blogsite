@@ -27,12 +27,19 @@
                     <li class="nav-item">
                         <a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ route('home') }}">Home</a>
                     </li>
+                    @role('user')
                     <li class="nav-item">
                         <a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ route('posts.index') }}">Post</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ route('posts.my-posts') }}">My Post</a>
                     </li>
+                    @endrole
+                    @role('admin')
+                    <li class="nav-item">
+                        <a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ route('admin.index') }}">Admin</a>
+                    </li>
+                    @endrole
                     <li class="nav-item">
                         <a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ route('logout') }}"
                         onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
@@ -41,7 +48,6 @@
                             @csrf
                         </form>
                     </li>
-
                 @endguest
             </ul>
         </div>

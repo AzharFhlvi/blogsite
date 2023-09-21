@@ -22,3 +22,6 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\PostController::class, 'home'])->name('home');
 Route::get('/posts/my-posts', [App\Http\Controllers\PostController::class, 'myPosts'])->name('posts.my-posts');
 Route::resource('posts', App\Http\Controllers\PostController::class);
+Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');  
+Route::delete('/admin/{user}', [App\Http\Controllers\AdminController::class, 'destroy'])->name('admin.destroy');
+Route::post('/admin/{user}/reset-password', [App\Http\Controllers\AdminController::class, 'resetPassword'])->name('admin.reset-password');
