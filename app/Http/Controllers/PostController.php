@@ -9,11 +9,6 @@ use Carbon\Carbon;
 
 class PostController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('permission:edit posts')->only(['edit', 'update']);
-        $this->middleware('permission:delete posts')->only(['destroy']);
-    }
     /**
      * Display a listing of the resource.
      */
