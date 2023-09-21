@@ -18,7 +18,8 @@
 <main>
     <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
-            <form action="{{ route('posts.update', ['post'=>$post->slug]) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('posts.update', ['post'=>$post->slug]) }}" method="POST"
+                enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
                 <div class="form-group">
@@ -31,11 +32,12 @@
                 </div>
                 <div class="form-group">
                     <label for="subtitle">Subtitle</label>
-                    <textarea name="subtitle" placeholder="Subtitle" class="form-control">{{ $post->subtitle }}</textarea>
+                    <textarea name="subtitle" placeholder="Subtitle"
+                        class="form-control">{{ $post->subtitle }}</textarea>
                 </div>
                 <div class="form-group">
                     <label for="body">Content</label>
-                    <textarea  name="body" id="body" class="form-control">
+                    <textarea name="body" id="body" class="form-control">
                         {{ $post->body }}
                     </textarea>
                     <script>
@@ -54,8 +56,8 @@
                     @endif
                     <label class="form-check-label" for="publish">Publish</label>
                 </div>
-                
-                
+
+
 
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
