@@ -16,7 +16,10 @@ class AdminController extends Controller
 
     public function destroy(User $user)
     {
+        $user->roles()->detach();
         $user->delete();
+
+        flash()->addSuccess('User deleted successfully!');
 
         return redirect(route('admin.index'));
     }
@@ -25,6 +28,8 @@ class AdminController extends Controller
     {
         $user->password = bcrypt('password');
         $user->save();
+
+        flash()->addSuccess('Password reset successfully!');
 
         return redirect(route('admin.index'));
     }

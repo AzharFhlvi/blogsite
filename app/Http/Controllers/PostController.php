@@ -57,6 +57,8 @@ class PostController extends Controller
             $post->addMediaFromRequest('image')->toMediaCollection('image');
         }
 
+        flash()->addSuccess('Post created successfully!');
+
         return redirect()->route('posts.index');
     }
 
@@ -113,6 +115,8 @@ class PostController extends Controller
             $post->addMediaFromRequest('image')->toMediaCollection('image');
         }
 
+        flash()->addSuccess('Post updated successfully!');
+
         return redirect()->route('posts.my-posts');
     }
 
@@ -124,6 +128,8 @@ class PostController extends Controller
         $media = $post->getFirstMedia('image');
         $media->delete();
         $post->delete();
+
+        flash()->addSuccess('Post deleted successfully!');
 
         return redirect()->route('posts.my-posts');
     }
