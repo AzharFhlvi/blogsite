@@ -28,10 +28,11 @@
                                 <h2 class="post-title">{{ $post->title }}</h2>
                                 <h3 class="post-subtitle">{{ $post->subtitle }}</h3>
                             </a>
-                            <span class="btn btn-sm {{ $post->published ? 'btn-primary' : 'btn-secondary' }}">
+                            <button type="button" class="btn btn-sm {{ $post->published ? 'btn-primary' : 'btn-secondary' }}" data-toggle="modal" data-target="#publishModal{{$post->id}}">
                                 {{ $post->published ? 'Published' : 'Not Published' }}
-                            </span> 
-                            <div class="post-actions">
+                              </button>
+                              <x-publish :post="$post" />
+                              <div class="post-actions">
                                 <!-- Edit Button -->
                                 <a href="{{ route('posts.edit', ['post'=>$post->slug]) }}" class="btn btn-sm btn-success">Edit</a>
                                 
@@ -50,10 +51,11 @@
                         
                         <!-- Divider-->
                         <hr class="my-4" />
-                    @endforeach
-                    <!-- Pager-->
-                    <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div>
-                </div>
+                        @endforeach
+
+                        <!-- Pager-->
+                        <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div>
+                    </div>
             </div>
         </div>
         <!-- Footer-->
@@ -92,4 +94,4 @@
                 </div>
             </div>
         </footer>
-@endsection
+        @endsection

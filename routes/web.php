@@ -17,6 +17,10 @@ Route::get('/', function () {
     return redirect(route("home"));
 });
 
+Route::get('testing', function () {
+    return view('testing');
+})->name('testing');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\PostController::class, 'home'])->name('home');
@@ -24,6 +28,7 @@ Route::get('/home', [App\Http\Controllers\PostController::class, 'home'])->name(
 Route::middleware(['role:user'])->group(function () {
     Route::get('/posts/my-posts', [App\Http\Controllers\PostController::class, 'myPosts'])->name('posts.my-posts');
     Route::resource('posts', App\Http\Controllers\PostController::class);
+    Route::put('/posts/{post}/publish', [App\Http\Controllers\PostController::class, 'publish'])->name('posts.publish');
 });
 
 Route::middleware(['role:admin'])->group(function () {

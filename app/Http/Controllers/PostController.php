@@ -133,4 +133,21 @@ class PostController extends Controller
 
         return redirect()->route('posts.my-posts');
     }
+
+    public function publish(Post $post)
+    {
+        if($post->published){
+            $post->published = 0;
+            $post->published_at = null;
+        } else {
+            $post->published = 1;
+            $post->published_at = Carbon::now();
+        }
+
+        $post->save();
+
+        flash()->addSuccess('Post published successfully!');
+
+        return redirect()->route('posts.my-posts');
+    }
 }
